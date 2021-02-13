@@ -17,17 +17,17 @@ Although this method worked on my test cases, I was skeptical it would work on a
 and found the following solution to be much more elegant.
 
 # The solution
-'''
+"""
 import rasterio
 
 def get_intersect(image_one, image_two):
 
-    """
+    \"\"\"
     Computes intersect of input two rasters.
     :param image_one: first image
     :param image_two: second image
     :return: tuple of intersect in (left, bottom, right, top)
-    """
+    \"\"\"
 
     with rasterio.open(image_one) as one:
         pre_win = rasterio.windows.Window(0, 0, one.width, one.height)
@@ -42,4 +42,4 @@ def get_intersect(image_one, image_two):
         return two.window_bounds(intersect_win)
 
 bounds = get_intersect('file_one', 'file_two')
-'''
+"""
