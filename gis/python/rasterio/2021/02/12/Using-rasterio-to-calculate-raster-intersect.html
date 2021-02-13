@@ -107,33 +107,31 @@ Although this method worked on my test cases, I was skeptical it would work on a
 and found the following solution to be much more elegant.</p>
 
 <h1 id="the-solution">The solution</h1>
-<p>”””
-import rasterio</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">rasterio</span>
 
-<p>def get_intersect(image_one, image_two):</p>
+<span class="k">def</span> <span class="nf">get_intersect</span><span class="p">(</span><span class="n">image_one</span><span class="p">,</span> <span class="n">image_two</span><span class="p">):</span>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\"\"\"
-Computes intersect of input two rasters.
-:param image_one: first image
-:param image_two: second image
-:return: tuple of intersect in (left, bottom, right, top)
-\"\"\"
+    \<span class="s">"</span><span class="se">\"\"</span><span class="s">
+    Computes intersect of input two rasters.
+    :param image_one: first image
+    :param image_two: second image
+    :return: tuple of intersect in (left, bottom, right, top)
+    </span><span class="se">\"\"\"</span><span class="s">
 
-with rasterio.open(image_one) as one:
-    pre_win = rasterio.windows.Window(0, 0, one.width, one.height)
-    pre_bounds = one.window_bounds(pre_win)
+    with rasterio.open(image_one) as one:
+        pre_win = rasterio.windows.Window(0, 0, one.width, one.height)
+        pre_bounds = one.window_bounds(pre_win)
 
-with rasterio.open(image_two) as two:
-    post_win = rasterio.windows.Window(0, 0, two.width, two.height)
-    pre_win_bounds = two.window(*pre_bounds)
-    assert rasterio.windows.intersect(pre_win_bounds, post_win)
-    intersect_win = post_win.intersection(pre_win_bounds)
+    with rasterio.open(image_two) as two:
+        post_win = rasterio.windows.Window(0, 0, two.width, two.height)
+        pre_win_bounds = two.window(*pre_bounds)
+        assert rasterio.windows.intersect(pre_win_bounds, post_win)
+        intersect_win = post_win.intersection(pre_win_bounds)
 
-    return two.window_bounds(intersect_win)
-</code></pre></div></div>
+        return two.window_bounds(intersect_win)
 
-<p>bounds = get_intersect(‘file_one’, ‘file_two’)
-“””</p>
+bounds = get_intersect('file_one', 'file_two')
+</span></code></pre></div></div>
 
   </div><!-- from https://github.com/utterance/utterances -->
 <script src="https://utteranc.es/client.js"
