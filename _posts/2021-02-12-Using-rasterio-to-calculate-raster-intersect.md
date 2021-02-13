@@ -17,7 +17,7 @@ Although this method worked on my test cases, I was skeptical it would work on a
 and found the following solution to be much more elegant.
 
 # The solution
-"""
+```python
 import rasterio
 
 def get_intersect(image_one, image_two):
@@ -42,4 +42,4 @@ def get_intersect(image_one, image_two):
         return two.window_bounds(intersect_win)
 
 bounds = get_intersect('file_one', 'file_two')
-"""
+```
