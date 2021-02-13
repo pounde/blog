@@ -107,17 +107,17 @@ Although this method worked on my test cases, I was skeptical it would work on a
 and found the following solution to be much more elegant.</p>
 
 <h1 id="the-solution">The solution</h1>
-<p>’’’
+<p>”””
 import rasterio</p>
 
 <p>def get_intersect(image_one, image_two):</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>"""
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\"\"\"
 Computes intersect of input two rasters.
 :param image_one: first image
 :param image_two: second image
 :return: tuple of intersect in (left, bottom, right, top)
-"""
+\"\"\"
 
 with rasterio.open(image_one) as one:
     pre_win = rasterio.windows.Window(0, 0, one.width, one.height)
@@ -133,7 +133,7 @@ with rasterio.open(image_two) as two:
 </code></pre></div></div>
 
 <p>bounds = get_intersect(‘file_one’, ‘file_two’)
-‘’’</p>
+“””</p>
 
   </div><!-- from https://github.com/utterance/utterances -->
 <script src="https://utteranc.es/client.js"
