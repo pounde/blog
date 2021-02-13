@@ -36,6 +36,7 @@ def get_intersect(image_one, image_two):
     with rasterio.open(image_two) as two:
         post_win = rasterio.windows.Window(0, 0, two.width, two.height)
         pre_win_bounds = two.window(*pre_bounds)
+        # Check that the rasters intersect
         assert rasterio.windows.intersect(pre_win_bounds, post_win)
         intersect_win = post_win.intersection(pre_win_bounds)
 
