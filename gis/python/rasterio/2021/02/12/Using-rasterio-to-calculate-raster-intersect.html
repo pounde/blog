@@ -111,27 +111,27 @@ and found the following solution to be much more elegant.</p>
 
 <span class="k">def</span> <span class="nf">get_intersect</span><span class="p">(</span><span class="n">image_one</span><span class="p">,</span> <span class="n">image_two</span><span class="p">):</span>
 
-    \<span class="s">"</span><span class="se">\"\"</span><span class="s">
+    <span class="s">"""
     Computes intersect of input two rasters.
     :param image_one: first image
     :param image_two: second image
     :return: tuple of intersect in (left, bottom, right, top)
-    </span><span class="se">\"\"\"</span><span class="s">
+    """</span>
 
-    with rasterio.open(image_one) as one:
-        pre_win = rasterio.windows.Window(0, 0, one.width, one.height)
-        pre_bounds = one.window_bounds(pre_win)
+    <span class="k">with</span> <span class="n">rasterio</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">image_one</span><span class="p">)</span> <span class="k">as</span> <span class="n">one</span><span class="p">:</span>
+        <span class="n">pre_win</span> <span class="o">=</span> <span class="n">rasterio</span><span class="p">.</span><span class="n">windows</span><span class="p">.</span><span class="n">Window</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">one</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">one</span><span class="p">.</span><span class="n">height</span><span class="p">)</span>
+        <span class="n">pre_bounds</span> <span class="o">=</span> <span class="n">one</span><span class="p">.</span><span class="n">window_bounds</span><span class="p">(</span><span class="n">pre_win</span><span class="p">)</span>
 
-    with rasterio.open(image_two) as two:
-        post_win = rasterio.windows.Window(0, 0, two.width, two.height)
-        pre_win_bounds = two.window(*pre_bounds)
-        assert rasterio.windows.intersect(pre_win_bounds, post_win)
-        intersect_win = post_win.intersection(pre_win_bounds)
+    <span class="k">with</span> <span class="n">rasterio</span><span class="p">.</span><span class="nb">open</span><span class="p">(</span><span class="n">image_two</span><span class="p">)</span> <span class="k">as</span> <span class="n">two</span><span class="p">:</span>
+        <span class="n">post_win</span> <span class="o">=</span> <span class="n">rasterio</span><span class="p">.</span><span class="n">windows</span><span class="p">.</span><span class="n">Window</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">two</span><span class="p">.</span><span class="n">width</span><span class="p">,</span> <span class="n">two</span><span class="p">.</span><span class="n">height</span><span class="p">)</span>
+        <span class="n">pre_win_bounds</span> <span class="o">=</span> <span class="n">two</span><span class="p">.</span><span class="n">window</span><span class="p">(</span><span class="o">*</span><span class="n">pre_bounds</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">rasterio</span><span class="p">.</span><span class="n">windows</span><span class="p">.</span><span class="n">intersect</span><span class="p">(</span><span class="n">pre_win_bounds</span><span class="p">,</span> <span class="n">post_win</span><span class="p">)</span>
+        <span class="n">intersect_win</span> <span class="o">=</span> <span class="n">post_win</span><span class="p">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">pre_win_bounds</span><span class="p">)</span>
 
-        return two.window_bounds(intersect_win)
+        <span class="k">return</span> <span class="n">two</span><span class="p">.</span><span class="n">window_bounds</span><span class="p">(</span><span class="n">intersect_win</span><span class="p">)</span>
 
-bounds = get_intersect('file_one', 'file_two')
-</span></code></pre></div></div>
+<span class="n">bounds</span> <span class="o">=</span> <span class="n">get_intersect</span><span class="p">(</span><span class="s">'file_one'</span><span class="p">,</span> <span class="s">'file_two'</span><span class="p">)</span>
+</code></pre></div></div>
 
   </div><!-- from https://github.com/utterance/utterances -->
 <script src="https://utteranc.es/client.js"
