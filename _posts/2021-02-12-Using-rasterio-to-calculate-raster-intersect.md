@@ -22,12 +22,12 @@ import rasterio
 
 def get_intersect(image_one, image_two):
 
-    \"\"\"
+    """
     Computes intersect of input two rasters.
     :param image_one: first image
     :param image_two: second image
     :return: tuple of intersect in (left, bottom, right, top)
-    \"\"\"
+    """
 
     with rasterio.open(image_one) as one:
         pre_win = rasterio.windows.Window(0, 0, one.width, one.height)
